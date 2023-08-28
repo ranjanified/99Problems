@@ -2,9 +2,13 @@
 
 ;; P23 Extract a given number of randomly selected elements from a list
 ;; The selected items shall be returned in a list
-;; (defun extract (l n)
-;;   "Extract a given number of randomly selected elements from a list"
-;;   )
+(defun rnd-select (l n)
+  "Extract a given number of randomly selected elements from a list"
+  (cond
+    ((= n 0) nil)
+    ((let* ((r (random (count-items l)))
+	    (i (if (= 0 r) 1 r)))
+       (cons (k-th l i)(rnd-select (remove-at l i) (1- n)))))))
 
 ;; P22 Create a list containing all integers within a given range
 (defun range (m n)

@@ -66,4 +66,7 @@
 
    ;; P22
    :range
+
+   ;; P23
+   :rnd-select
    ))
