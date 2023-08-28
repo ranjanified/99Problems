@@ -69,4 +69,7 @@
 
    ;; P23
    :rnd-select
+
+   ;; P24
+   :lotto-select
    ))

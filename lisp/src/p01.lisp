@@ -1,5 +1,14 @@
 (in-package :99-lisp)
 
+;; P24 Lotto: Draw N different random numbers from the set 1..M
+(defun lotto-select (num max)
+  "Draw N different random numbers from the set 1..M"
+  (cond
+     ((= num 0) nil)
+     ((let* ((r (random max))
+	     (i (if (= r 0) 1 r)))
+	(cons i (lotto-select (1- num) max))))))
+
 ;; P23 Extract a given number of randomly selected elements from a list
 ;; The selected items shall be returned in a list
 (defun rnd-select (l n)
