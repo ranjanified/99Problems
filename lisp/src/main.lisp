@@ -72,4 +72,10 @@
 
    ;; P24
    :lotto-select
+
+   ;; P25
+   :rnd-permute
+
+   ;; P26
+   :combination
    ))

@@ -1,5 +1,26 @@
 (in-package :99-lisp)
 
+;; P26 Generate the combinations of K distinct objects chosen from the N elements of a list
+;; n how many ways can a committee of 3 be chosen from a group of 12 people? We all know that there are C(12,3) = 220 possibilities (C(N,K) denotes the well-known binomial coefficients). For pure mathematicians, this result may be great. But we want to really generate all the possibilities in a list.
+(defun combination (k l)
+  (labels ((split-chunks (l k)
+	     (let ((s (split l k)))
+	       (cond
+		 ((null s) nil)
+		 ((= k 0) (list))
+		 ((< (count-items (car s)) k) nil)
+		 ((cons (car s) (split-chunks (cdr l) k)))))))
+    (cond
+      ((null l) nil)
+      ((= 0 k) nil)
+      ((= 1 k) (mapcar #'list l))
+      ((append (mapcar (lambda (x) (cons (car l) x)) (split-chunks (cdr l) (1- k))) (combination k (cdr l)))))))
+
+;; P25 Generate a random permutation of the elements of a list
+(defun rnd-permute (l)
+  "Generate a random permutation of the elements of a list"
+  (let ((num (count-items l))) (mapcar (lambda (n) (k-th l n)) (lotto-select num num))))
+
 ;; P24 Lotto: Draw N different random numbers from the set 1..M
 (defun lotto-select (num max)
   "Draw N different random numbers from the set 1..M"

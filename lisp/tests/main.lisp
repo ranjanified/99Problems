@@ -6,6 +6,26 @@
 
 ;; NOTE: To run this test file, execute `(asdf:test-system :99-lisp)' in your Lisp.
 
+(test combination
+  (is-true (null (combination 8 '())))
+  (is-true (equal (combination 1 '(a b c d e f g))
+		  '((a) (b) (c) (d) (e) (f) (g))))
+  (is-true (equal (combination 2 '(a b c d e f g))
+		  '((A B) (A C) (A D) (A E) (A F) (A G) (B C) (B D) (B E) (B F) (B G) (C D) (C E)
+						     (C F) (C G) (D E) (D F) (D G) (E F) (E G) (F G))))
+  (is-true (equal (combination 3 '(a b c d e f g))
+		  '((A B C) (A C D) (A D E) (A E F) (A F G) (B C D) (B D E) (B E F) (B F G)
+						     (C D E) (C E F) (C F G) (D E F) (D F G) (E F G))))
+  (is-true (equal (combination 4 '(a b c d e f g))
+		  '((A B C D) (A C D E) (A D E F) (A E F G) (B C D E) (B D E F) (B E F G)
+						     (C D E F) (C E F G) (D E F G))))
+  (is-true (equal (combination 5 '(a b c d e f g))
+		  '((A B C D E) (A C D E F) (A D E F G) (B C D E F) (B D E F G) (C D E F G))))
+  (is-true (equal (combination 6 '(a b c d e f g))
+		  '((A B C D E F) (A C D E F G) (B C D E F G))))
+  (is-true (equal (combination 7 '(a b c d e f g)) '((A B C D E F G))))
+  (is-true (null (combination 8 '(a b c d e f g)))))
+
 (test range
   (is-true (equal (range 1 1) '(1)))
   (is-true (equal (range 4 9) '(4 5 6 7 8 9)))
